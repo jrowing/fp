@@ -1,0 +1,17 @@
+<%
+  require "./scripts/eruby_util.rb"
+%>
+
+<%
+  chapter(
+    '01',
+    %q{Scalars and vectors},
+    'ch:vectors'
+  )
+%>
+
+<% begin_sec("Continuity in nature",nil,'continuity-in-nature') %>
+
+<% end_sec('continuity-in-nature') %>
+
+<% end_chapter %>

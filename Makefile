@@ -1,8 +1,10 @@
 RUN_ERUBY = perl -Iscripts scripts/run_eruby.pl
 
+BOOK = fp
+
 TEX_INTERPRETER = pdflatex
 #TEX_INTERPRETER = lualatex
-DO_PDFLATEX_RAW = $(TEX_INTERPRETER) -shell-escape -interaction=nonstopmode sr >err
+DO_PDFLATEX_RAW = $(TEX_INTERPRETER) -shell-escape -interaction=nonstopmode $(BOOK) >err
 # -shell-escape is so that write18 will be allowed
 SHOW_ERRORS = \
         print "========error========\n"; \
@@ -16,7 +18,6 @@ SHOW_ERRORS = \
         exit(1)
 DO_PDFLATEX = echo "$(DO_PDFLATEX_RAW)" ; perl -e 'if (system("$(DO_PDFLATEX_RAW)")) {$(SHOW_ERRORS)}'
 HANDHELD_TEMP = handheld_temp
-BOOK = fp
 GENERIC_OPTIONS_FOR_CALIBRE =  --authors "Benjamin Crowell" --language en --title "First-year physics for future physicists" --toc-filter="[0-9]\.[0-9]" --title="First-year physics for future physicists"
 PROBLEMS_CSV = problems.csv
 
