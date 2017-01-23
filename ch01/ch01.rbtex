@@ -12,6 +12,103 @@
 
 <% begin_sec("Continuity in nature",nil,'continuity-in-nature') %>
 
+Ancient philosophers like Heraclitus and Parmenides quarreled over whether change
+was real or only an illusion. Heraclitus was the one who famously said that you can't
+step in the same river twice. From a modern perspective, a more interesting question
+is whether change can be discontinuous. Leibniz claimed, less famously,
+that ``nature never jumps,'' and his assertion has held up surprisingly well through
+multiple revolutions in physics. 
+
+<% marg(30) %>
+<%
+  fig(
+    'leibniz-portrait',
+    %q{Gottfried Wilhelm Leibniz (1646-1716) was a philosopher and one of the co-inventors of the calculus.}
+  )
+%>
+<% end_marg %>
+
+One of these revolutions was the discovery of quantum
+mechanics, and you've probably heard the phrase ``quantum leap.'' Quantum leaps are not
+actually leaps at all. For example, when an atomic nucleus undergoes radioactive decay,
+it doesn't leap from state A to state B. If we prepare it in state A, then it gradually
+transforms itself into a mixture of A and B, with the strength of the A part decaying exponentially,
+while B gets correspondingly stronger. This mixture can be interpreted in probabilistic terms,
+with the probability of A going down while B's goes up. So although Leibniz died a couple of
+centuries too early to have had any inkling of quantum mechanics, he ended up being undeservedly correct.
+
+To make these ideas about continuity more rigorous, we start by making everything
+into a set. This would have upset Leibniz, who was sincerely convinced that
+``a point may not be considered a part of a line,'' but the point-set approach is how the modern mathematician
+thinks about these things by default.\footnote{An alternative description, which would have
+been more to Leibniz's liking, is given
+by smooth infinitesimal analysis, described, e.g., in Bell, \emph{A primer of infinitesimal analysis}.}
+In this approach, a set contains points, and a point may be, for example:
+%
+\begin{itemize}
+\item a point in Euclidean space,
+\item an event in spacetime, or
+\item a state of a physical system such as a machine or a gas of helium atoms.
+\end{itemize}
+%
+An idealized particle has zero size, so Euclidean space can be thought of as the set of all possible locations
+of a particle. The prototypical example of an event in spacetime would be the collision of two particles,
+which happens at a certain location in space and also at a certain time.
+
+These sets aren't just grab-bags. They have additional structure. The most fundamental
+type of structure they have is that of a \emph{manifold}.\index{manifold} Suppose we start
+with a geometrical object such as the real number line, or the Euclidean plane, but
+then systematically rob it of all structure relating to measurement, such as distances or angles.
+Distances and angles would be \emph{too much} structure for our purposes in this very general context.
+For example, there is no meaningful way of stating the angle between two different states
+of a helium gas. So we tear out
+the information about what's-how-far-from-what, but we retain what's-connected-to-what.
+The result is a manifold, which we can think of as a rubber sheet that can be infinitely
+stretched or compressed, but not cut or glued together.
+
+As manifolds,
+\begin{equation}
+  \raisebox{-.13\height}{\includegraphics{ch01/figs/man-eq-small-circle}} = \raisebox{-.2\height}{\includegraphics{ch01/figs/man-eq-large-circle}},
+\end{equation}
+because without a system of measurement, we can't tell a small circle from a big one.
+And without angular measurement, we can't tell that a square has corners,
+\begin{equation}
+  \raisebox{-.13\height}{\includegraphics{ch01/figs/man-eq-small-circle}} = \raisebox{-.13\height}{\includegraphics{ch01/figs/man-eq-square}}.
+\end{equation}
+These are one-dimensional manifolds, which we happen to have drawn on a two-dimensional page.
+A theorem by Whitney says that it is always \emph{possible} to embed a manifold in some higher-dimensional
+space in this way, but such an embedding is optional, not mandatory. If we imagine ourselves as
+pointlike beings living in a universe consisting of a circle, then we would consider an hypothetical
+second dimension to be nonexistent, because it would never show up in the result of any experiment.
+Part of our notion of a manifold is a kind of democratic principle, that no point has special properties
+that set it apart from any other point. For example, the figure eight curve
+\raisebox{-.13\height}{\includegraphics{ch01/figs/man-figure-eight}} is not a manifold, because its point
+of self-intersection is special. If we deleted it, the curve would be broken into two disconnected parts.
+
+We can have manifolds with more than one dimension. For example, the surface of a coffee cup is the
+same manifold as the surface of a doughnut,
+\begin{equation}
+  \raisebox{-.13\height}{\includegraphics{ch01/figs/man-eq-coffee-cup}} = \raisebox{-.13\height}{\includegraphics{ch01/figs/man-eq-doughnut}},
+\end{equation}
+because one can be transformed into the other by stretching. An $n$-dimensional manifold
+is referred to as an $n$-manifold.
+
+\begin{eg}{A robot camera}\label{eg:robot-camera}
+Suppose we have a robot consisting of a car that runs along a track, with a rotating camera on a turret.
+The state of the robot can be described by a combination of two pieces of data: its position on the track,
+and the direction in which the camera points. Taken by themselves, these two parts of the robot's state
+define two distinct 1-manifolds: a line and a circle. Taken together, they define a cylinder, which is
+a 2-manifold.
+\end{eg}
+
+Manifolds are discussed in more detail in section \ref{sec:manifolds}, p.~\pageref{sec:manifolds}.
+
+%%%%%%%%%%%%%%%%% direct product -- use in robot camera?
+
+% hw: describe spacewars, pacman; what is the topology?
+
+% dimension of the line
+
 <% end_sec('continuity-in-nature') %>
 
 <% end_chapter %>

@@ -22,6 +22,25 @@
 \RequirePackage{lmlanguage,lmlayout,lmcommon,lmfigs,lmenvironments}
 % \RequirePackage[hidelinks]{hyperref} % doesn't work correctly, see meki, latex notes
 %=====================================================================================
+% override some stuff from from lmenvironments.sty:
+%-------------------------------------------------
+\renewenvironment{eg}[2][3] 
+        {%
+                \refstepcounter{egctr}%
+                \pagebreak[#1]\noindent\rule{\linewidth}{0.5pt}
+                \noindent\textbf{Example \theegctr\qquad #2}\\*\noindent%
+        }
+        {%
+                \\\noindent\rule{\linewidth}{0.5pt}
+        }
+\renewenvironment{lessimportant}[1][]%
+	{%
+          \noindent\rule{\linewidth}{0.5pt}
+          \noindent\ifthenelse{\equal{#1}{}}{}{\textbf{#1}\\*}%
+        }{%
+                \noindent\rule{\linewidth}{0.5pt}
+	}
+%=====================================================================================
 % In DP, we use italics for figref, but in LM that would look too much like an algebra
 % symbol, so no italics.
 \newcommand{\formatfigref}[1]{#1}
@@ -74,3 +93,6 @@
         \else
             \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
         \fi}
+\AtBeginDocument{%
+  \numberwithin{equation}{section}
+}
