@@ -26,7 +26,8 @@ default:
 	@scripts/before_each.rb
 	BK=$(BOOK) $(RUN_ERUBY)
 	$(DO_PDFLATEX)
-	@scripts/translate_to_html.rb --util="learn_commands:$(BOOK).cmd"
+	@#scripts/translate_to_html.rb --util="learn_commands:$(BOOK).cmd"
+	# ... error related to \Arrow or \smiley in ch 1
 	@process_geom_file.pl <geom.pos >temp.pos
 	@mv temp.pos geom.pos
 	makeindex $(BOOK).idx >/dev/null
@@ -35,7 +36,7 @@ book:
 	@make preflight
 	make clean
 	make && make
-	@scripts/translate_to_html.rb --util="learn_commands:$(BOOK).cmd"
+	@#scripts/translate_to_html.rb --util="learn_commands:$(BOOK).cmd"
 	@scripts/check_for_colliding_figures.rb
 	@scripts/harvest_aux_files.rb
 	make

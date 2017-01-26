@@ -20,6 +20,8 @@
 \StartSaveCommands % for learn-cmd-syntax
 %====================== pull in sub-packages =====================================================
 \RequirePackage{lmlanguage,lmlayout,lmcommon,lmfigs,lmenvironments}
+\RequirePackage{wasysym} % provides \smiley
+\RequirePackage{pict2e,picture} % for use by \Arrow
 % \RequirePackage[hidelinks]{hyperref} % doesn't work correctly, see meki, latex notes
 %=====================================================================================
 % override some stuff from from lmenvironments.sty:
@@ -40,6 +42,22 @@
         }{%
                 \noindent\rule{\linewidth}{0.5pt}
 	}
+%----------------------------------------------
+% http://tex.stackexchange.com/a/270009/6853
+\DeclareRobustCommand{\Arrow}[1][]{%
+  \check@mathfonts
+  \if\relax\detokenize{#1}\relax
+    \settowidth{\dimen@}{$\m@th\rightarrow$}%
+  \else
+    \setlength{\dimen@}{#1}%
+  \fi
+  \sbox\z@{\usefont{U}{lasy}{m}{n}\symbol{41}}%
+  \begin{picture}(\dimen@,\ht\z@)
+  \roundcap
+  \put(\dimexpr\dimen@-.7\wd\z@,0){\usebox\z@}
+  \put(0,\fontdimen22\textfont2){\line(1,0){\dimen@}}
+  \end{picture}%
+}
 %=====================================================================================
 % In DP, we use italics for figref, but in LM that would look too much like an algebra
 % symbol, so no italics.

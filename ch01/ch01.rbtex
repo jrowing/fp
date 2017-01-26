@@ -103,12 +103,209 @@ a 2-manifold.
 
 Manifolds are discussed in more detail in section \ref{sec:manifolds}, p.~\pageref{sec:manifolds}.
 
-%%%%%%%%%%%%%%%%% direct product -- use in robot camera?
-
-% hw: describe spacewars, pacman; what is the topology?
-
-% dimension of the line
-
 <% end_sec('continuity-in-nature') %>
+
+<% begin_sec("Vectors in too much generality",nil,'vectors-general') %>
+
+Points in a manifold can be used to represent states, but they can
+often also be used to represent changes in state. Examples include displacements along
+a line, or rotations on a circle.
+The order in which these motions occur may or may not matter.
+The robot camera in example \ref{eg:robot-camera} can slide and then rotate, or rotate and then
+slide, and the final result is the same state. If a ship sails 100 km north and then 100 km east, the
+result is almost the same as going east and then north --- but not quite the same, because of the curvature
+of the earth. We want to study the case in which the order doesn't matter, and the motions don't ``wrap
+around'' as rotations do. This motivates the following definition.
+
+\begin{important}[Definition of a vector space]
+A vector space is a connected manifold that has defined on it an operation of addition
+with the following properties:
+\begin{enumerate}
+\item Addition is commutative, $\vc{a}+\vc{b}=\vc{b}+\vc{a}$.
+\item There is no nonzero $\vc{a}$ such that $\vc{a}+\vc{a}=\vc{0}$.
+\end{enumerate}
+\end{important}
+\noindent The manifold should be connected rather than having multiple disconnected blobs,
+and addition should also be associative, $(\vc{a}+\vc{b})+\vc{c}=\vc{a}+(\vc{b}+\vc{c})$,
+and continuous, and have an identity element $\vc{0}$ and additive inverses.
+
+<% marg() %>
+<%
+  fig(
+    'parallelogram-rule',
+    %q{The parallelogram rule used to define vector addition in example \ref{eg:parallelogram-rule}.}
+  )
+%>
+<% end_marg %>
+
+\begin{eg}{The parallelogram rule}\label{eg:parallelogram-rule}
+The classic example that most people visualize when they think of a vector space is a space
+made of arrows drawn in the euclidean plane. These arrows can be moved around without changing their
+identity, as long as we don't rotate them. Addition is defined as shown in figure
+\figref{parallelogram-rule}, and the figure makes the commutativity of addition
+geometrically obvious. This type of vector, or its generalization to three dimensions, can be
+used to describe physical quantities such as displacements (motion from one point to another),
+forces, velocities, and magnetic fields.
+\end{eg}
+
+We distinguish vectors from variables representing ordinary numbers by
+writing them either in bold face, $\vc{x}$, or with some kind of decoration,
+called an ``index,'' above and to the right: $x^{\Arrow[.1cm]}$, $x^\star$,
+$x^a$, $x^{\smiley}$.  
+For compactness, we sometimes use an arrow and move it so
+it lines up with the letter, $\vec{x}$. Although the arrow is common, for reasons that will become clear
+later we will sometimes want to have more than one kind of decoration to use as an index.
+
+Whenever we have a vector space, there is a natural notion of multiplying a vector by
+a number, e.g., $2\vc{v}$ means $\vc{v}+\vc{v}$. By property 2 in the definition of a vector space,
+$2\vc{v}$ is not zero unless
+$\vc{v}=\vc{0}$.
+
+\begin{eg}{Cutting a vector in half}
+Given a vector $\vc{v}$, there is a uniquely defined half-size version $\vc{h}=\vc{v}/2$
+defined by $\vc{h}+\vc{h}=\vc{v}$. For suppose
+we have some other vector $\vc{i}$ such that $\vc{i}+\vc{i}=\vc{v}$.
+Then we can write $(\vc{i}-\vc{h})+(\vc{i}-\vc{h})=\vc{0}$, so by property 2, $\vc{i}-\vc{h}=0$, and
+$\vc{i}$ is the same as $\vc{h}$.
+\end{eg}
+
+Continuing in this way, we can define $(3/4)\vc{v}$ and so forth, so that multiplication
+by any real number is well defined.\footnote{To handle irrational numbers, we can expand our number
+as a nonterminating binary decimal, and we will need the completeness
+property of manifolds defined on p.~\pageref{manifold-completeness} to ensure that the resulting
+limit exists.}
+
+\begin{eg}{Rotations are not vectors}
+When we spin the hour on a clock, it doesn't matter whether we rotate it first by one hour and then by two,
+or two first and then one, so commutativity is satisfied. But if we do a clockwise rotation by 6 hours
+and then followed by another such rotation, the the hand is back where it started. This violates
+property 2, so rotations don't qualify as vectors. For rotations in more dimensions, commutativity also
+fails.
+\end{eg}
+
+<% end_sec('vectors-general') %>
+
+<% begin_sec("Measuring vectors by addition",nil,'measuring-vectors-by-addition') %>
+
+The definition of vectors given in section \ref{sec:vectors-general}
+is a very general mathematician's definition, and it covers examples
+like the vector space of polynomials or a vector space used in economics
+to describe how a factory allocates its workers.
+Physicists usually use the term to imply a more restrictive
+definition, which is vector spaces that in a certain sense have the
+same structure as either space (three dimensions) or spacetime (four).
+We refer to these as 3-vectors and 4-vectors.
+
+To define ``a certain sense,'' we have to consider what it means to
+measure a vector. The qualitative idea is that vectors are
+\emph{relational}: whenever we measure a vector, we measure it only in
+relation to some measuring device. For example, consider a propeller anemometer, which is
+a device like the propeller on an airplane, used to measure the speed of the wind. If the
+wind shifts from the north to the south, then the propeller will rotate the opposite way,
+and we will say that the wind's velocity vector $\vc{v}$ has changed to $-\vc{v}$. But
+exactly the same result is obtained if we use our hand to turn the anemometer around.
+The instrument doesn't ``know'' whether it turned around or the wind did. Its measurement
+only tells us the direction of the wind \emph{in relation to} its own orientation.
+
+To crystallize this intuition, we make two seemingly weak assumptions about measurement:
+
+\begin{enumerate}
+\item We can measure whether a vector is zero.
+\item We can physically create the sum of two vectors.
+\end{enumerate}
+
+\noindent The idea expressed by assumption 1 is that a zero vector is the only vector we can
+measure in absolute terms, rather than in relation to another vector.
+Note that, as we'll see in the next section, we cannot in general
+determine whether a vector is zero by measuring whether its
+\emph{magnitude} is zero. A 4-vector can be nonzero and yet have a nonzero magnitude.
+
+\begin{eg}{Zero magnetic field}\label{eg:zero-magnetic-field}
+We can use a magnetic compass with a frictionless bearing to measure
+whether a magnetic field is zero. If the field is nonzero, then the needle can be made to oscillate around
+its preferred orientation. If the field is zero, then such an oscillation is impossible, and the needle
+can only spin at constant speed or stay put if released at rest in an arbitrary orientation.
+\end{eg}
+
+<%
+ fig(
+   'nulling-magnetic-fields',
+   %q{Example \ref{eg:nulling-magnetic-fields}.
+      Magnetic fields are produced by two solenoids: cylindrical coils of wire with electric currents
+      running through them. The solenoids are shown in cross-section,
+      with empty space on their interiors and their common axis running right-left. By symmetry, the field
+      vectors are along this axis.},
+   {
+     'width'=>'wide',
+     'sidecaption'=>true
+   }
+ )
+%>
+
+\begin{eg}{Strength of a magnetic field}\label{eg:nulling-magnetic-fields}
+Figure \figref{nulling-magnetic-fields} shows
+a method of measuring how a magnetic field falls off with distance.
+Each of the two solenoids produces its own contribution to the field measured at the active tip of the sensor wand.
+In such a situation, the fields add as required by assumption 2, and the sensor can tell whether
+the field is zero at its own tip. This is similar to example \ref{eg:zero-magnetic-field}, but the
+technique is extremely precise because the electronic probe can be used on a very sensitive setting.
+If the fixed solenoid produces a magnetic field $\vc{B}$
+when unit current flows through it, then increasing the current by a factor $f$ gives
+a field $f\vc{B}$. By varying the position $r_m$ of the moving solenoid, and redetermining the value of $f$
+that produces zero field, we can find out by what factor the field has changed.
+\end{eg}
+
+Examples \ref{eg:zero-magnetic-field} and \ref{eg:nulling-magnetic-fields} may make our two
+assumptions seem plausible or even obvious, but they
+immediately produce some surprisingly strong conclusions. They tell us that some of the things
+that mathematicians consider to be vectors are not really vectors to a physicist. Consider
+a vector representing a displacement in three-dimensional space, visualized abstractly
+as an arrow. Assumption 1 seems obviously to be satisfied.
+But now suppose I drive to Gettysburg, Pennsylvania, and visit the brass plaque marking the site
+of the momentous Civil War battle. Am I really in the same spot? The earth has been spinning
+and orbiting the sun since 1863.
+
+Motion occurs in spacetime, which is a four-dimensional
+manifold. There was an event A, the battle, and an event B, my arrival at the scene.
+If A and B are the same point in this four-dimensional space, then I'm there on the day
+of the battle, with bullets flying past my head, and it is indisputable that the displacement 4-vector is
+zero. But in general we \emph{cannot} tell whether a 4-vector is zero just by examining the 3-vector
+formed by projection when we throw out its temporal part.
+
+<% marg() %>
+<%
+  fig(
+    'basis',
+    %q{The vectors $\vc{u}$ and $\vc{v}$ form a basis for a plane. Any other vector can be expressed
+       as a linear combination of them.}
+  )
+%>
+<% end_marg %>
+
+To make it more clear what is going on here, it is helpful to have the ideas of a linear combination
+and a basis. If $\vc{u}$ and $\vc{v}$ are vectors, then for any real numbers $\alpha$ and $\beta$,
+the expression $\alpha\vc{u}+\beta\vc{v}$ is called a linear combination of $\vc{u}$ and $\vc{v}$.
+If we have a manifold of dimension $n$ that is a vector space, then it is always possible to find
+a set of $n$ vectors such that every vector in the space can be expressed as a linear combination of
+these vectors. Such a set is called a basis.
+
+If I'm navigating on a map, I might find it convenient to pick a basis vector $\hat{\vc{x}}$ pointing
+to the east, a $\hat{\vc{y}}$ pointing north, and an upward $\hat{\vc{z}}$, but this would
+be an arbitrary choice. When I make observations in four-dimensional spacetime, I also have to
+choose a $\hat{\vc{t}}$ such that if the tail of the vector is at an event like the battle of Gettysburg,
+its tip is at an event that I consider to occur at the same place but a later time.
+This choice of $\hat{\vc{t}}$ also has an element of arbitrariness. An observer in a different state
+of motion would make a different choice.
+
+<% end_sec('measuring-vectors-by-addition') %>
+
+<% begin_hw_sec %>
+<% begin_hw('measure-parallelism') %>
+Section \ref{sec:measuring-vectors-by-addition}, p.~\pageref{sec:measuring-vectors-by-addition}, states
+two assumptions about measurement. Based on these assumptions, can we measure
+whether or not two vectors are parallel? Perpendicular?
+<% end_hw %>
+
+<% end_hw_sec %>
 
 <% end_chapter %>
