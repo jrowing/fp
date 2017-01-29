@@ -80,6 +80,7 @@ A theorem by Whitney says that it is always \emph{possible} to embed a manifold 
 space in this way, but such an embedding is optional, not mandatory. If we imagine ourselves as
 pointlike beings living in a universe consisting of a circle, then we would consider an hypothetical
 second dimension to be nonexistent, because it would never show up in the result of any experiment.
+
 Part of our notion of a manifold is a kind of democratic principle, that no point has special properties
 that set it apart from any other point. For example, the figure eight curve
 \raisebox{-.13\height}{\includegraphics{ch01/figs/man-figure-eight}} is not a manifold, because its point
@@ -100,6 +101,9 @@ and the direction in which the camera points. Taken by themselves, these two par
 define two distinct 1-manifolds: a line and a circle. Taken together, they define a cylinder, which is
 a 2-manifold.
 \end{eg}
+
+A connected manifold consists of a single piece. A disconnected manifold has multiple blobs that don't
+touch. Because it seems that ``nature never jumps,'' physicists normally deal with connected manifolds.
 
 Manifolds are discussed in more detail in section \ref{sec:manifolds}, p.~\pageref{sec:manifolds}.
 
@@ -125,8 +129,7 @@ with the following properties:
 \item There is no nonzero $\vc{a}$ such that $\vc{a}+\vc{a}=\vc{0}$.
 \end{enumerate}
 \end{important}
-\noindent The manifold should be connected rather than having multiple disconnected blobs,
-and addition should also be associative, $(\vc{a}+\vc{b})+\vc{c}=\vc{a}+(\vc{b}+\vc{c})$,
+\noindent Addition should also be associative, $(\vc{a}+\vc{b})+\vc{c}=\vc{a}+(\vc{b}+\vc{c})$,
 and continuous, and have an identity element $\vc{0}$ and additive inverses.
 
 <% marg() %>
@@ -178,7 +181,7 @@ limit exists.}
 \begin{eg}{Rotations are not vectors}
 When we spin the hour on a clock, it doesn't matter whether we rotate it first by one hour and then by two,
 or two first and then one, so commutativity is satisfied. But if we do a clockwise rotation by 6 hours
-and then followed by another such rotation, the the hand is back where it started. This violates
+and then followed by another such rotation, the hand is back where it started. This violates
 property 2, so rotations don't qualify as vectors. For rotations in more dimensions, commutativity also
 fails.
 \end{eg}
@@ -209,7 +212,7 @@ only tells us the direction of the wind \emph{in relation to} its own orientatio
 
 To crystallize this intuition, we make two seemingly weak assumptions about measurement:
 
-\begin{enumerate}
+\begin{enumerate}\label{measurement-assumptions}
 \item We can measure whether a vector is zero.
 \item We can physically create the sum of two vectors.
 \end{enumerate}
@@ -255,24 +258,7 @@ a field $f\vc{B}$. By varying the position $r_m$ of the moving solenoid, and red
 that produces zero field, we can find out by what factor the field has changed.
 \end{eg}
 
-Examples \ref{eg:zero-magnetic-field} and \ref{eg:nulling-magnetic-fields} may make our two
-assumptions seem plausible or even obvious, but they
-immediately produce some surprisingly strong conclusions. They tell us that some of the things
-that mathematicians consider to be vectors are not really vectors to a physicist. Consider
-a vector representing a displacement in three-dimensional space, visualized abstractly
-as an arrow. Assumption 1 seems obviously to be satisfied.
-But now suppose I drive to Gettysburg, Pennsylvania, and visit the brass plaque marking the site
-of the momentous Civil War battle. Am I really in the same spot? The earth has been spinning
-and orbiting the sun since 1863.
-
-Motion occurs in spacetime, which is a four-dimensional
-manifold. There was an event A, the battle, and an event B, my arrival at the scene.
-If A and B are the same point in this four-dimensional space, then I'm there on the day
-of the battle, with bullets flying past my head, and it is indisputable that the displacement 4-vector is
-zero. But in general we \emph{cannot} tell whether a 4-vector is zero just by examining the 3-vector
-formed by projection when we throw out its temporal part.
-
-<% marg() %>
+<% marg(-10) %>
 <%
   fig(
     'basis',
@@ -286,18 +272,127 @@ To make it more clear what is going on here, it is helpful to have the ideas of 
 and a basis. If $\vc{u}$ and $\vc{v}$ are vectors, then for any real numbers $\alpha$ and $\beta$,
 the expression $\alpha\vc{u}+\beta\vc{v}$ is called a linear combination of $\vc{u}$ and $\vc{v}$.
 If we have a manifold of dimension $n$ that is a vector space, then it is always possible to find
-a set of $n$ vectors such that every vector in the space can be expressed as a linear combination of
-these vectors. Such a set is called a basis.
+a list of $n$ vectors such that every vector in the space can be expressed as a linear combination of
+these vectors. Such a list is called a basis, and the coefficients $\alpha$ and $\beta$ are called
+the vector's components in that basis. If this is the first time you've seen these concepts from linear
+algebra, then you may want to look at a linear algebra textbook to gain a better \ldots basis in the
+subject. I recommend \textbf{Linear Algebra} by Hefferon, which is free online.
 
-If I'm navigating on a map, I might find it convenient to pick a basis vector $\hat{\vc{x}}$ pointing
-to the east, a $\hat{\vc{y}}$ pointing north, and an upward $\hat{\vc{z}}$, but this would
-be an arbitrary choice. When I make observations in four-dimensional spacetime, I also have to
-choose a $\hat{\vc{t}}$ such that if the tail of the vector is at an event like the battle of Gettysburg,
+<%
+ fig(
+   'change-of-basis',
+   %q{The same vector is expressed in four different choices of basis.},
+   {
+     'width'=>'wide',
+     'sidecaption'=>true,
+     'sidepos'=>'b'
+   }
+ )
+%>
+
+A choice of basis is arbitrary. Figure \figref{change-of-basis} shows that when we change our basis,
+we get different components. Mathematically, this is just a matter of algebra, e.g., $\vc{c}=-\vc{a}$ and
+$\vc{d}=-\vc{b}$, so by substitution $\vc{a}+\vc{b}=-\vc{c}-\vc{d}$. But physically, our assumptions about
+measurement imply that we can measure a vector's components, and therefore a change of basis must have
+a physical interpretation. If the two dimensions in this example are both spatial rather than temporal,
+and the vectors are magnetic field vectors, then the change of basis from $\langle \vc{a},\vc{b} \rangle$
+to $\langle \vc{c},\vc{d} \rangle$ is a rotation of two magnetic field detectors by 180\degunit,
+$\langle \vc{a},\vc{b} \rangle \rightarrow \langle \vc{e},\vc{f} \rangle$ means cutting the units
+of measurement in half, and
+$\langle \vc{a},\vc{b} \rangle \rightarrow \langle \vc{g},\vc{h} \rangle$ is accomplished by flipping (reflecting)
+the configuration of the detectors.
+
+A physicist thinks of a displacement vector and a magnetic field vector as inhabiting different vector
+spaces, because it doesn't make sense to add a displacement to a magnetic field. However, all such
+vector spaces are related to one another, because any change of basis in one of them can be related
+to a change of basis in another. For example, if a laboratory on the deck of a ship contains magnetic fields
+sensors and wind sensors, then rotating the ship by 180\degunit effects the same change of basis for both types
+of sensors. This is what a physicist means by a vector, and it is a more restrictive definition than
+a mathematician's:
+
+\begin{important}[Definition of vectors and scalars (in physics)]
+A 3-vector is a vector that transforms under a change of basis in the same way as a spatial displacement.
+
+\noindent A 4-vector is a vector that transforms under a change of basis in the same way as a spacetime displacement.
+
+\noindent A scalar is a quantity that does not change at all under a change of basis.
+\end{important}
+
+<% marg() %>
+<%
+  fig(
+    'vectors-and-scalars',
+    %q{Temperature is a scalar. Force is a vector.}
+  )
+%>
+<% end_marg %>
+
+Temperature is a scalar, because a hot cup of coffee doesn't change its temperature
+when we turn it around. Force is a vector. When I play tug-of-war with my dog,
+her force and mine are the same in strength, but they're in opposite directions.
+If we swap positions, our forces reverse their directions, just as an arrow representing a spatial
+displacement would.
+
+Consider
+a vector representing a displacement in three-dimensional space, visualized abstractly
+as an arrow. Assumption 1, that we can tell whether a vector is zero, seems obviously to be satisfied.
+But now suppose I drive to Gettysburg, Pennsylvania, and visit the brass plaque marking the site
+of the momentous Civil War battle. Am I really in the same spot? The earth has been spinning
+and orbiting the sun since 1863.
+
+
+Motion occurs in spacetime, which is a four-dimensional
+manifold. There was an event A, the battle, and an event B, my arrival at the scene.
+If A and B are the same point in this four-dimensional space, then I'm there on the day
+of the battle, with bullets flying past my head, and it is indisputable that the displacement 4-vector is
+zero. But in general we \emph{cannot} tell whether a 4-vector is zero just by examining its spatial part.
+
+When I make observations in four-dimensional spacetime, I also have to
+choose a timelike basis vector, call it $\vc{t}$,
+such that if the tail of the vector is at an event like the battle of Gettysburg,
 its tip is at an event that I consider to occur at the same place but a later time.
-This choice of $\hat{\vc{t}}$ also has an element of arbitrariness. An observer in a different state
-of motion would make a different choice.
+This choice of $\vc{t}$ has an element of arbitrariness. An observer in a different state
+of motion would make a different choice, as shown in figure \figref{gettysburg}. If we express
+the earth's displacement vector in basis $\langle \vc{t},\vc{x} \rangle$, it has both a spatial
+component and a temporal component, so we say the the earth moves. If we choose
+$\langle \boldsymbol{\tau},\boldsymbol{\xi} \rangle$ instead, then we have effectively chosen
+a frame of reference tied to the earth, and we say that the earth's displacement is purely temporal.
+<% marg(300) %>
+<%
+  fig(
+    'gettysburg',
+    %q{A different choice of basis in spacetime can mean a different definition of what is at rest.}
+  )
+%>
+<% end_marg %>
+
+Because 3-vectors live in a three-dimensional vector space that can be embedded within the four-dimensional
+spacetime, a mathematician would consider every 3-vector to be a valid 4-vector. By the physicist's definition,
+we reach the opposite conclusion.
+
+An important example of a scalar is the number of ticks on a clock. Since this is just a count,
+like the number of apples in a sack, its value can't depend on our choice of basis. We call this
+count of the ticks \emph{proper time}, where the word ``proper'' is used in the sense of ``self''
+or ``one's own,'' as in ``the Vatican doesn't like in Rome proper.'' This does not, however, mean
+that time in general is absolute or independent of our frame of reference --- as we will see
+in our study of relativity, time in general is not a scalar. Only proper time is. However, at
+velocities too small for relativistic effects to be important, it is a good approximation to think
+of time as a scalar, and we can drop the distinction between time and proper time.
+
+When we multiply (or divide) a vector by a scalar, we get another vector (by either the mathematician's definition
+or the physicist's). Therefore if we divide a displacement 3-vector by a time (or a proper time,
+when the distinction is important), we get a valid 3-vector. In this way, we can define a velocity
+vector. Velocity vectors add in relative motion (assumption 2 about measurement on p.~\pageref{measurement-assumptions}).
+If object A is moving relative to object B with velocity $\vc{v}_\text{AB}$, and
+B relative to C at $\vc{v}_\text{BC}$, then the velocity of A relative to C is given by
+\begin{equation}
+  \vc{v}_\text{AC} = \vc{v}_\text{AB}+\vc{v}_\text{BC}.
+\end{equation}
+
 
 <% end_sec('measuring-vectors-by-addition') %>
+
+
 
 <% begin_hw_sec %>
 <% begin_hw('measure-parallelism') %>
