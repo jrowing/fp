@@ -181,7 +181,7 @@ limit exists.}
 \begin{eg}{Rotations are not vectors}
 When we spin the hour on a clock, it doesn't matter whether we rotate it first by one hour and then by two,
 or two first and then one, so commutativity is satisfied. But if we do a clockwise rotation by 6 hours
-and then followed by another such rotation, the hand is back where it started. This violates
+and then  a second such rotation, the hand is back where it started. This violates
 property 2, so rotations don't qualify as vectors. For rotations in more dimensions, commutativity also
 fails.
 \end{eg}
@@ -201,10 +201,12 @@ We refer to these as 3-vectors and 4-vectors.
 
 To define ``a certain sense,'' we have to consider what it means to
 measure a vector. The qualitative idea is that vectors are
-\emph{relational}: whenever we measure a vector, we measure it only in
+\emph{relational}: if we wish to use measurements in order to fully
+characterize a nonzero vector, we can do so only in
 relation to some measuring device. For example, consider a propeller anemometer, which is
-a device like the propeller on an airplane, used to measure the speed of the wind. If the
-wind shifts from the north to the south, then the propeller will rotate the opposite way,
+a device used to measure the speed of the wind. We consider a simple version of the device in
+which the axis is held fixed by the user during a particular measurement. If the
+wind shifts from the north to the south, then the propeller will spin the opposite way about the fixed axis,
 and we will say that the wind's velocity vector $\vc{v}$ has changed to $-\vc{v}$. But
 exactly the same result is obtained if we use our hand to turn the anemometer around.
 The instrument doesn't ``know'' whether it turned around or the wind did. Its measurement
@@ -237,7 +239,7 @@ can only spin at constant speed or stay put if released at rest in an arbitrary 
       Magnetic fields are produced by two solenoids: cylindrical coils of wire with electric currents
       running through them. The solenoids are shown in cross-section,
       with empty space on their interiors and their common axis running right-left. By symmetry, the field
-      vectors are along this axis.},
+      vectors at points  along this axis are parallel to the axis.},
    {
      'width'=>'wide',
      'sidecaption'=>true
@@ -255,7 +257,7 @@ technique is extremely precise because the electronic probe can be used on a ver
 If the fixed solenoid produces a magnetic field $\vc{B}$
 when unit current flows through it, then increasing the current by a factor $f$ gives
 a field $f\vc{B}$. By varying the position $r_m$ of the moving solenoid, and redetermining the value of $f$
-that produces zero field, we can find out by what factor the field has changed.
+that produces zero total field, we can find out by what factor the field has changed.
 \end{eg}
 
 <% marg(-10) %>
@@ -268,7 +270,7 @@ that produces zero field, we can find out by what factor the field has changed.
 %>
 <% end_marg %>
 
-To make it more clear what is going on here, it is helpful to have the ideas of a linear combination
+It is helpful to have the ideas of a linear combination
 and a basis. If $\vc{u}$ and $\vc{v}$ are vectors, then for any real numbers $\alpha$ and $\beta$,
 the expression $\alpha\vc{u}+\beta\vc{v}$ is called a linear combination of $\vc{u}$ and $\vc{v}$.
 If we have a manifold of dimension $n$ that is a vector space, then it is always possible to find
@@ -305,7 +307,7 @@ the configuration of the detectors.
 A physicist thinks of a displacement vector and a magnetic field vector as inhabiting different vector
 spaces, because it doesn't make sense to add a displacement to a magnetic field. However, all such
 vector spaces are related to one another, because any change of basis in one of them can be related
-to a change of basis in another. For example, if a laboratory on the deck of a ship contains magnetic fields
+to a change of basis in another. For example, if a laboratory on the deck of a ship contains magnetic field
 sensors and wind sensors, then rotating the ship by 180\degunit effects the same change of basis for both types
 of sensors. This is what a physicist means by a vector, and it is a more restrictive definition than
 a mathematician's:
@@ -340,7 +342,6 @@ But now suppose I drive to Gettysburg, Pennsylvania, and visit the brass plaque 
 of the momentous Civil War battle. Am I really in the same spot? The earth has been spinning
 and orbiting the sun since 1863.
 
-
 Motion occurs in spacetime, which is a four-dimensional
 manifold. There was an event A, the battle, and an event B, my arrival at the scene.
 If A and B are the same point in this four-dimensional space, then I'm there on the day
@@ -361,30 +362,41 @@ a frame of reference tied to the earth, and we say that the earth's displacement
 <%
   fig(
     'gettysburg',
-    %q{A different choice of basis in spacetime can mean a different definition of what is at rest.}
+    %q{A different choice of basis in spacetime can mean a different definition of what is at rest.
+       Two spatial dimensions are suppressed in this one-dimensional diagram, so the bases
+       $\langle \vc{t},\vc{x} \rangle$ and $\langle \boldsymbol{\tau},\boldsymbol{\xi} \rangle$ have
+       only two elements each rather than four.}
   )
 %>
 <% end_marg %>
 
-Because 3-vectors live in a three-dimensional vector space that can be embedded within the four-dimensional
-spacetime, a mathematician would consider every 3-vector to be a valid 4-vector. By the physicist's definition,
-we reach the opposite conclusion.
+Because 3-vectors live in a three-dimensional vector space that can be
+embedded within the four-dimensional spacetime, a mathematician would
+consider every 3-vector to be a valid 4-vector. By the physicist's
+definition, we reach the opposite conclusion. 
 
-An important example of a scalar is the number of ticks on a clock. Since this is just a count,
-like the number of apples in a sack, its value can't depend on our choice of basis. We call this
-count of the ticks \emph{proper time}, where the word ``proper'' is used in the sense of ``self''
-or ``one's own,'' as in ``the Vatican doesn't like in Rome proper.'' This does not, however, mean
-that time in general is absolute or independent of our frame of reference --- as we will see
-in our study of relativity, time in general is not a scalar. Only proper time is. However, at
-velocities too small for relativistic effects to be important, it is a good approximation to think
-of time as a scalar, and we can drop the distinction between time and proper time.
+An important example of a scalar is the number of ticks on a clock.
+Since this is just a count, like the number of apples in a sack, its
+value can't depend on our choice of basis. We call this count of the
+ticks \emph{proper time}, where the word ``proper'' is used in the
+sense of ``self'' or ``one's own,'' as in ``the Vatican doesn't like
+in Rome proper.'' This does not, however, mean that time in general is
+absolute or independent of our frame of reference --- as we will see
+in our study of Einstein's theory of relativity, time in general is not a scalar. Only
+proper time is. However, at velocities too small for relativistic
+effects to be important, it is a good approximation to think of time
+as a scalar, and we can drop the distinction between time and proper
+time. 
 
-When we multiply (or divide) a vector by a scalar, we get another vector (by either the mathematician's definition
-or the physicist's). Therefore if we divide a displacement 3-vector by a time (or a proper time,
-when the distinction is important), we get a valid 3-vector. In this way, we can define a velocity
-vector. Velocity vectors add in relative motion (assumption 2 about measurement on p.~\pageref{measurement-assumptions}).
-If object A is moving relative to object B with velocity $\vc{v}_\text{AB}$, and
-B relative to C at $\vc{v}_\text{BC}$, then the velocity of A relative to C is given by
+When we multiply (or divide) a vector by a scalar, we get another
+vector (by either the mathematician's definition or the physicist's).
+Therefore if we divide a displacement 3-vector by a time (or a proper
+time, when the distinction is important), we get a valid 3-vector. In
+this way, we can define a velocity vector. Velocity vectors add in
+relative motion (assumption 2 about measurement on
+p.~\pageref{measurement-assumptions}).  If object A is moving relative
+to object B with velocity $\vc{v}_\text{AB}$, and B relative to C at
+$\vc{v}_\text{BC}$, then the velocity of A relative to C is given by
 \begin{equation}
   \vc{v}_\text{AC} = \vc{v}_\text{AB}+\vc{v}_\text{BC}.
 \end{equation}
