@@ -19,7 +19,8 @@
 % enumerate is for lc roman numerals, which I sometimes want so items don't look like equation numbers
 \StartSaveCommands % for learn-cmd-syntax
 %====================== pull in sub-packages =====================================================
-\RequirePackage{lmlanguage,lmlayout,lmcommon,lmfigs,lmenvironments}
+\RequirePackage{lmlanguage,lmlayout,lmcommon,lmfigs,lmenvironments,enumitem}
+% enumitem: https://tex.stackexchange.com/questions/222408/how-to-list-items-like-this-i-ii-iii-etc
 \RequirePackage{wasysym} % provides \smiley
 \RequirePackage{pict2e,picture} % for use by \Arrow
 % \RequirePackage[hidelinks]{hyperref} % doesn't work correctly, see meki, latex notes
@@ -73,7 +74,7 @@
 }
 \normalsectiontitleformat
 \titleformat{\subsection}
-  {\normalfont\normalsize\bfseries\sffamily\raggedright\protect\sansmath}{\lmserifmath\showsecnum{\thesubsection}}{0.6em}{}
+  {\normalfont\normalsize\bfseries\sffamily\raggedright\protect}{}{0mm}{}
 \titleformat{\subsubsection}
   {\normalfont\normalsize\slshape\raggedright}{\thesubsubsection}{1em}{}
 %-------------------- sections and subsections -------------------------

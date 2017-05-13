@@ -88,7 +88,10 @@ very_clean:
 preflight:
 	@@chmod +x scripts/custom/*
 	@perl -e 'if (-e "scripts/custom/enable") {foreach $$f(<scripts/custom/*.pl>) {$$c="$$f $(BOOK) $(PROBLEMS_CSV)"; system($$c)}}'
-	@perl -e 'foreach $$f("scripts/run_eruby.pl","scripts/equation_to_image.pl","scripts/latex_table_to_html.pl","scripts/harvest_aux_files.rb","scripts/check_for_colliding_figures.rb","scripts/translate_to_html.rb","mv_silent") {die "file $$f is not executable; fix this with chmod +x $$f" unless -e $$f && -x $$f}'
+	@perl -e 'foreach $$f("scripts/run_eruby.pl","scripts/equation_to_image.pl","scripts/latex_table_to_html.pl","scripts/harvest_aux_files.rb","scripts/check_for_colliding_figures.rb","scripts/translate_to_html.rb","mv_silent") {die "file $$f is not executable; fix this with chmod +x $$f or make permissions" unless -e $$f && -x $$f}'
+
+permissions:
+	chmod +x scripts/*.pl scripts/*.rb mv_silent fruby process_geom_file.pl
 
 post:
 	cp $(BOOK).pdf ~/Lightandmatter/$(BOOK)

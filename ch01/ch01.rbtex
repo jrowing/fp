@@ -225,6 +225,19 @@ Note that, as we'll see in the next section, we cannot in general
 determine whether a vector is zero by measuring whether its
 \emph{magnitude} is zero. A 4-vector can be nonzero and yet have a nonzero magnitude.
 
+\begin{eg}{Opposite, equal, and parallel vectors}\label{eg:measuring-vectors-opposite}
+It follows from these assumptions that we can tell whether two vectors are opposite, $\vc{a}=-\vc{b}$.
+If they are opposite, then we can physically create their sum (assumption 2) and measure that the result is zero
+(assumption 1). 
+
+For example, we will see later that forces are vectors, and it makes sense that we can tell when two forces are opposite.
+I have a coffee cup sitting on my desk right now, and the downward force of the earth's gravity on the cup is
+opposite to the upward force from the table that supports it.
+
+By similar logic, we can measure whether two vectors are equal, $\vc{a}=\vc{b}$, and
+whether they are parallel, with $\vc{a}=\alpha\vc{b}$ for some $\alpha$.
+\end{eg}
+
 \begin{eg}{Zero magnetic field}\label{eg:zero-magnetic-field}
 We can use a magnetic compass with a frictionless bearing to measure
 whether a magnetic field is zero. If the field is nonzero, then the needle can be made to oscillate around
@@ -269,6 +282,18 @@ that produces zero total field, we can find out by what factor the field has cha
   )
 %>
 <% end_marg %>
+
+The ability to measure equality of vectors
+implies that vectors have a sort of portable identity, as when you travel to a foreign country
+but remain the same person. Similarly, our assumptions imply that we can test whether a vector
+measured in San Francisco is the same as a some other vector measured in Nairobi. For example, a pencil
+represents a vector. We could attach a pencil to a gyroscope, transport it around the world, and then compare
+it to some other pencil, and verify whether they coincided in their lengths and directions. The use of the gyroscope
+guarantees that while we transport the pencil, it will remain parallel to its original direction. This type
+of operation is referred to as \emph{parallel transport}.\index{parallel transport} It turns out that parallel
+transport is always possible in special relativity, but not in Einstein's theory of general relativity, which
+says that gravitational fields are a kind of curvature of spacetime. The curvature messes up the parallel transport
+in certain ways and makes it unreliable or ambiguous.
 
 It is helpful to have the ideas of a linear combination
 and a basis. If $\vc{u}$ and $\vc{v}$ are vectors, then for any real numbers $\alpha$ and $\beta$,
@@ -320,7 +345,7 @@ A 3-vector is a vector that transforms under a change of basis in the same way a
 \noindent A scalar is a quantity that does not change at all under a change of basis.
 \end{important}
 
-<% marg() %>
+<% marg(300) %>
 <%
   fig(
     'vectors-and-scalars',
@@ -335,6 +360,8 @@ her force and mine are the same in strength, but they're in opposite directions.
 If we swap positions, our forces reverse their directions, just as an arrow representing a spatial
 displacement would.
 
+<% begin_sec("Motion and inertia",nil,'motion-and-inertia') %>
+
 Consider
 a vector representing a displacement in three-dimensional space, visualized abstractly
 as an arrow. Assumption 1, that we can tell whether a vector is zero, seems obviously to be satisfied.
@@ -347,18 +374,7 @@ manifold. There was an event A, the battle, and an event B, my arrival at the sc
 If A and B are the same point in this four-dimensional space, then I'm there on the day
 of the battle, with bullets flying past my head, and it is indisputable that the displacement 4-vector is
 zero. But in general we \emph{cannot} tell whether a 4-vector is zero just by examining its spatial part.
-
-When I make observations in four-dimensional spacetime, I also have to
-choose a timelike basis vector, call it $\vc{t}$,
-such that if the tail of the vector is at an event like the battle of Gettysburg,
-its tip is at an event that I consider to occur at the same place but a later time.
-This choice of $\vc{t}$ has an element of arbitrariness. An observer in a different state
-of motion would make a different choice, as shown in figure \figref{gettysburg}. If we express
-the earth's displacement vector in basis $\langle \vc{t},\vc{x} \rangle$, it has both a spatial
-component and a temporal component, so we say the the earth moves. If we choose
-$\langle \boldsymbol{\tau},\boldsymbol{\xi} \rangle$ instead, then we have effectively chosen
-a frame of reference tied to the earth, and we say that the earth's displacement is purely temporal.
-<% marg(300) %>
+<% marg(-300) %>
 <%
   fig(
     'gettysburg',
@@ -370,40 +386,220 @@ a frame of reference tied to the earth, and we say that the earth's displacement
 %>
 <% end_marg %>
 
+When I make observations in four-dimensional spacetime, I also have to
+choose a timelike basis vector, call it $\vc{t}$,
+such that if the tail of the vector is at an event like the battle of Gettysburg,
+its tip is at an event that I consider to occur at the same place but a later time.
+This choice of $\vc{t}$ has an element of arbitrariness. An observer in a different state
+of motion would make a different choice, as shown in figure \figref{gettysburg}. If we express
+the earth's displacement vector in basis $\langle \vc{t},\vc{x} \rangle$, it has both a spatial
+component and a temporal component, so we say the the earth moves. If we choose
+$\langle \boldsymbol{\tau},\boldsymbol{\xi} \rangle$ instead, then we have effectively chosen
+a frame of reference tied to the earth, and we say that the earth's displacement is purely temporal.
+
 Because 3-vectors live in a three-dimensional vector space that can be
 embedded within the four-dimensional spacetime, a mathematician would
 consider every 3-vector to be a valid 4-vector. By the physicist's
 definition, we reach the opposite conclusion. 
 
+Suppose that an object traces out a track through spacetime such that
+all displacements along that track are parallel to one another.
+Then we say that its motion is \emph{inertial}. Inertial motion is
+empirically verifiable, whereas being at rest is not. For example,
+suppose that the glass of water in figure \figref{beer} is sitting on
+a level table in a train's dining car. The surface of the water is
+tilted. We can infer from this that the train's motion is noninertial.
+But we \emph{cannot} tell anything about how fast it is moving, or
+whether it is moving at all. We can guarantee that there exists some
+frame of reference in which the train is at rest, as well as many others
+according to which it is moving.
+The beginning of modern physics was the realization by Galileo and others that
+inertial motion is the natural state of motion of an object, ``natural'' meaning what it does
+if it is not interacting with any other objects.
+<% marg(50) %>
+<%
+  fig(
+    'beer',
+    %q{Evidence of noninertial motion.}
+  )
+%>
+<% end_marg %>
+
+
+
 An important example of a scalar is the number of ticks on a clock.
 Since this is just a count, like the number of apples in a sack, its
 value can't depend on our choice of basis. We call this count of the
 ticks \emph{proper time}, where the word ``proper'' is used in the
-sense of ``self'' or ``one's own,'' as in ``the Vatican doesn't like
-in Rome proper.'' This does not, however, mean that time in general is
+sense of ``self'' or ``one's own,'' as in ``the Vatican doesn't lie
+in Rome proper.''
+This does not, however, mean that time in general is
 absolute or independent of our frame of reference --- as we will see
 in our study of Einstein's theory of relativity, time in general is not a scalar. Only
-proper time is. However, at velocities too small for relativistic
-effects to be important, it is a good approximation to think of time
-as a scalar, and we can drop the distinction between time and proper
-time. 
+proper time is.
 
 When we multiply (or divide) a vector by a scalar, we get another
 vector (by either the mathematician's definition or the physicist's).
 Therefore if we divide a displacement 3-vector by a time (or a proper
 time, when the distinction is important), we get a valid 3-vector. In
-this way, we can define a velocity vector. Velocity vectors add in
-relative motion (assumption 2 about measurement on
+this way, we can define a velocity vector. Under conditions in which the effects of
+relativity are negligible, velocity vectors add in
+relative motion (satisfying assumption 2 about measurement on
 p.~\pageref{measurement-assumptions}).  If object A is moving relative
 to object B with velocity $\vc{v}_\text{AB}$, and B relative to C at
 $\vc{v}_\text{BC}$, then the velocity of A relative to C is given by
 \begin{equation}
-  \vc{v}_\text{AC} = \vc{v}_\text{AB}+\vc{v}_\text{BC}.
+  \vc{v}_\text{AC} = \vc{v}_\text{AB}+\vc{v}_\text{BC} \qquad \text{[nonrelativistic approximation]}.
 \end{equation}
+<% end_sec('motion-and-inertia') %>
 
 
 <% end_sec('measuring-vectors-by-addition') %>
 
+<% begin_sec("Measuring vectors with the inner product",nil,'inner-product') %>
+We now have a very limited notion of numerical measurement, which allows us to measure proper time intervals.
+We would like to expand this to include other types of measurement such as distances and angles.
+You began learning to do this in elementary school, but many of the ideas you soaked up about these
+things turn out to be wrong when we consider relativistic effects. We would therefore like to develop
+the topic using an elegant bare minimum of conceptual apparatus, in such a way that there are no
+wrong assumptions that are swept under the rug.
+
+<% marg(50) %>
+<%
+  fig(
+    'time-triangle',
+    %q{Clock 1 moves along $\vc{a}$, 2 along $\vc{b}$ and $\vc{c}$.}
+  )
+%>
+<% end_marg %>
+
+Suppose that clock 1 moves inertially through spacetime, tracing out vector $\vc{a}$. Clock 2 is
+also present at the events that lie at the tail and tip of $\vc{a}$, but it moves noninertially,
+tracing out vectors $\vc{b}$ and $\vc{c}$, so that $\vc{a}=\vc{b}+\vc{c}$. That is, clock 2 cruises smoothly away
+from clock 1, but then abruptly accelerates and then cruises smoothly back to a reunion. There are two
+logical possibilities:
+\begin{enumerate}[label=(\roman*)]
+\item The reunited clocks will always agree on the elapsed proper time.
+\item The clocks will in general disagree.
+\end{enumerate}
+There is of course the degenerate case where $\vc{a}$, $\vc{b}$, and $\vc{c}$ are all parallel, so that the clocks are
+never really separated, and 2's motion is also inertial. In this case, the triangle representing the vector
+addition collapses to a one-dimensional figure, there is nothing to distinguish the
+two clocks, and they must agree. Furthermore, we expect that since ``nature never jumps,'' the clocks must
+approximately agree when we approximate the degenerate case. That is, the result of the experiment
+must be a continuous function of the experimental parameters.
+Thus if (ii) holds, we may be fooled by experiments in which the motion is slow into believing that
+(i) is really the truth. This is in fact what happened historically, leading to the belief by Newton (which,
+to his credit, he realized was a nontrivial assumption) that
+``Absolute, true and mathematical time, of itself, and from its own nature flows equably without regard 
+to anything external\ldots'' When we do experiments at high enough speeds or with sufficiently accurate
+clocks, we find that (ii) is actually correct.
+
+These considerations lead to a surprisingly simple, unified theory of measurement based on the assumption
+that there is a kind of multiplication operation for four-vectors. We will use more than one way of notating
+this operation, but for the moment we will use a dot, $\vc{a}\cdot\vc{b}$. It has the following properties:
+\begin{itemize}
+\item This product is a physical scalar, i.e., it has a value that is independent of the frame of reference or 
+         choice of basis.
+\item It is commutative, $\vc{a}\cdot\vc{b}=\vc{b}\cdot\vc{a}$.
+\item It is linear, $\vc{a}\cdot(u\vc{b}+v\vc{c})=u\vc{a}\cdot\vc{b}+v\vc{a}\cdot\vc{c}$.
+\end{itemize}
+For convenience, we write $a^2=\vc{a}\cdot\vc{a}$, with the ``a'' in $a^2$ written without bold face
+to indicate that it is a scalar.
+
+We assume that this system is complete, in the sense that there is nothing else that we can
+measure about vectors besides inner products. It then follows that when a clock moves along
+a vector such as $\vc{a}$, the proper time $\tau$ is expressible in terms of $a^2$, and since the count
+of the clock ticks is additive, we must have $\tau^2 \propto a^2$. The constant of proportionality
+has an absolute value that depends on our choice of units, and may also have a sign. It is conventional
+to take the constant to be either $+1$ or $-1$, and unfortunately there is no universally recognized convention
+as to the sign. We will avoid picking such a convention explicitly until we come back to our study of
+relativity in more detail.
+
+It follows from these assumptions that the inner product of spacetime displacement vectors is measurable
+using clocks. For example, let clocks 1 and 2 move as described
+earlier, tracing out a triangle representing the sum
+$\vc{a}=\vc{b}+\vc{c}$. Then
+$c^2=(\vc{a}-\vc{b})^2=a^2+b^2-2\vc{a}\cdot\vc{b}$, and everything in
+this equation is directly measurable using a clock, except for
+$\vc{a}\cdot\vc{b}$, which can then be determined.\footnote{In this
+example we assumed that it was possible to move clocks along the given
+spacetime displacements, but this assumption can be relaxed. For
+example, suppose that $\vc{b}$ points backward in time. Then $-\vc{b}$
+points forward in time, and we have
+$\vc{a}\cdot\vc{b}=-(\vc{a}\cdot-\vc{b})$.}
+
+When $\vc{a}\cdot\vc{b}=0$, we say that $\vc{a}$ and $\vc{b}$ are orthogonal to one another.
+If $\vc{a}$ and $\vc{b}$ represent spatial displacements, then this has the interpretation
+that you would expect from your study of the Euclidean dot product: they are at a right
+angle to one another. If, on the other hand, $\vc{u}$ is traced out by an observer (so that
+it points into the future), then $\vc{u}\cdot\vc{b}=0$ clearly cannot be interpreted as
+describing a right angle. Instead, we interpret this as meaning that events at the tip
+and tail of $\vc{b}$ (when $\vc{b}$ is placed in some position) are simultaneous as judged
+by that observer. Another observer, with $\vc{v}\ne\vc{u}$, will find $\vc{v}\cdot\vc{b}\ne 0$,
+and will say that the events are \emph{not} simultaneous. 
+
+It is not our purpose at this point to develop the theory of special relativity in detail,
+but the following explicitly relativistic experiment will help in clarifying a couple of points.
+Figure \figref{maximal-proper-time} is a variation on figure \figref{time-triangle}, with the
+vector $\boldsymbol{\delta}$ measuring the deviation of the second clock from inertial motion.
+Let $\boldsymbol{\delta}=r\vc{x}$, where $r$ is an adjustable parameter and $\vc{x}$ is a fixed vector
+orthogonal to $\vc{i}$ (i.e., the inertial observer says that $\vc{x}$ is a vector connecting simultaneous
+points).
+Experiments verify hypothesis (ii) above, that the proper time $\tau$ along the noninertial path varies
+with $r$. By symmetry, $\tau$ must be an even function of $r$, so we expect that it will be at an
+extremum for $r=0$. Experiments show that it is a maximum. Such observations lead to the
+\emph{principle of maximal proper time},
+that proper time is maximized by inertial motion.
+<% marg(50) %>
+<%
+  fig(
+    'maximal-proper-time',
+    %q{Proper time is maximized when $\delta=0$.}
+  )
+%>
+<% end_marg %>
+
+The proper time along vector $\vc{i}+\boldsymbol{\delta}$ is
+$\sqrt{|(\vc{i}+\boldsymbol{\delta})^2|}$, where the absolute value symbols are inserted so that
+our equations will be true regardless of one's decision about the arbitrary sign convention
+alluded to above. Multiplying out the square and making use of
+$\vc{i}\cdot\boldsymbol{\delta}=0$, we find that the proper time is $\sqrt{|i^2+\delta^2|}$. 
+(Recall that a notation like $\delta^2$ is just an abbreviation for $\boldsymbol{\delta}\cdot\boldsymbol{\delta}$.
+We have not defined any number called $\delta$.) The proper
+time along $\vc{i}-\boldsymbol{\delta}$ is the same, so the total proper time
+is $2\sqrt{|i^2+\delta^2|}$. By the principle of maximal time, this must be \emph{less}
+than the proper time $2i$ of the inertial clock, and therefore $\vc{i}\cdot\vc{i}$ and
+$\boldsymbol{\delta}\cdot\boldsymbol{\delta}$ apparently have opposite signs. This
+is contrary to our Euclidean intuition, according to which the dot product of a vector
+with itself is the square of its length, and lengths are always positive. But in the context
+of spacetime, it actually makes some sense. The inner product is supposed to suffice as
+a complete system of measurement in spacetime. If so, then there ought to be some way
+to use inner products to distinguish between time and space. We have found that there is:
+``timelike'' and ``spacelike'' displacements differ in the sign of their inner products with themselves.
+If we had instead insisted that all vectors have positive inner products with themselves, then there
+would have been nothing to distinguish time from space. We would be describing a strange universe
+consisting of a four-dimensional Euclidean space, a universe in which an observer could turn 180 degrees and
+rotate the future into the past.
+
+This example also helps to explain the sense in which the physics of
+Galileo and Newton (Galilean relativity) can be a valid low-velocity
+approximation to the more generally correct picture provided by
+Einstein's special relativity. If the Galilean approximation is good when
+the motion of one object relative to another is slow, the natural question to
+ask is ``slow compared to what?'' The proper time of the noninertial clock in our
+example is $2\sqrt{|i^2+\delta^2|}$, and we can make this vanish by scaling $\boldsymbol{\delta}$ up to an
+appropriately chosen size. This special size of $\boldsymbol{\delta}$ is the one for which
+the number of units of time expressed by $\sqrt{|i^2|}$ is the same as the number of
+units of space measured by $\sqrt{|\delta^2|}$. If time and space units are to be comparable
+in this way, then there is some special speed, which is one space unit per time unit.
+This speed is commonly referred to as the speed of light, $c$, but from a modern point of
+view, it is more like a conversion factor between spatial and temporal units.
+When we return later to a more detailed investigation of special relativity, we will
+see that $c$ is a velocity that is agreed upon by all observers, and that it is not
+actually possible to accelerate a clock or other material object to $c$.
+
+<% end_sec('inner-product') %>
 
 
 <% begin_hw_sec %>
